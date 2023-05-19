@@ -1,50 +1,27 @@
 ﻿namespace AlgorithmPrograms 
-{  
-
-class BubbleSort
 {
-    static void Main()
+    public class Program
     {
-        Console.WriteLine("Enter the integers :");
-
-        var numbers = new List<int>();
-        string input;
-        while (!string.IsNullOrEmpty(input = Console.ReadLine()))
+        public static void Main(string[] args)
         {
-            if (int.TryParse(input, out int number))
-            {
-                numbers.Add(number);
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid integer.");
-            }
+            List<string> arr = new List<string> { "zebra", "apple", "banana", "orange", "grape" };
+
+            Console.WriteLine("Before sorting:");
+            PrintList(arr);
+
+            MergeSort.Sort(arr);
+
+            Console.WriteLine("\nAfter sorting:");
+            PrintList(arr);
         }
 
-        BubbleSortAscending(numbers);
-
-        Console.WriteLine("Sorted List:");
-        foreach (var number in numbers)
+        private static void PrintList(List<string> arr)
         {
-            Console.WriteLine(number);
+            foreach (string item in arr)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
         }
     }
-
-    static void BubbleSortAscending(List<int> numbers)
-    {
-        int n = numbers.Count;
-        for (int i = 0; i < n - 1; i++)
-        {
-            for (int j = 0; j < n - i - 1; j++)
-            {
-                if (numbers[j] > numbers[j + 1])
-                {
-                    int temp = numbers[j];
-                    numbers[j] = numbers[j + 1];
-                    numbers[j + 1] = temp;
-                }
-            }
-        }
-    }
-}
 }
