@@ -1,53 +1,25 @@
-﻿
-
-
-class Program
+﻿namespace AlgorithmPrograms
 {
-    static void Main()
+    class InsertionSort
     {
-        string[] wordList = ReadWordList();
-
-        Console.Write("Enter a word to search: ");
-        string searchWord = Console.ReadLine();
-
-        Array.Sort(wordList);
-
-        if (BinarySearch(wordList, searchWord))
-            Console.WriteLine("The word is found in the list.");
-        else
-            Console.WriteLine("The word is not found in the list.");
-
-        Console.ReadLine();
-    }
-
-    static string[] ReadWordList()
-    {
-        Console.Write("Enter the list of words separated by commas: ");
-        string wordListInput = Console.ReadLine();
-
-        return wordListInput.Split(',');
-    }
-
-    static bool BinarySearch(string[] wordList, string searchWord)
-    {
-        int left = 0;
-        int right = wordList.Length - 1;
-
-        while (left <= right)
+        static void Main()
         {
-            int middle = (left + right) / 2;
+            Console.WriteLine("Enter a list of words (separated by spaces):");
+            string input = Console.ReadLine();
 
-            int comparisonResult = string.Compare(searchWord, wordList[middle]);
+            string[] words = input.Split(' ');
 
-            if (comparisonResult == 0)
-                return true;
-            else if (comparisonResult < 0)
-                right = middle - 1;
-            else
-                left = middle + 1;
+            Sorter sorter = new Sorter();
+
+            sorter.Sort(words);
+
+            Console.WriteLine("Sorted List:");
+            foreach (string word in words)
+            {
+                Console.WriteLine(word);
+            }
         }
-
-        return false;
-    }
+    } 
 }
 
+    
