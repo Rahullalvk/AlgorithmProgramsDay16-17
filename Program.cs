@@ -1,75 +1,88 @@
 ﻿using System;
-using System.Collections.Generic;
 
-class PrimeNumberFinder
+class Program
 {
     static void Main()
     {
-        Console.WriteLine("Prime numbers between 0 and 1000 that are anagrams and palindromes:");
-        FindAnagramPalindromePrimes(0, 1000);
+        int[] numbers = { 5, 2, 9, 1, 3 };
+
+        Console.WriteLine("Original array:");
+        PrintArray(numbers);
+
+        Console.WriteLine("\nSorted array:");
+        BubbleSort(numbers);
+        PrintArray(numbers);
+
+        int searchValue = 3;
+        int linearSearchIndex = LinearSearch(numbers, searchValue);
+        Console.WriteLine($"\nLinear search: {searchValue} found at index {linearSearchIndex}");
+
+        int binarySearchIndex = BinarySearch(numbers, searchValue);
+        Console.WriteLine($"Binary search: {searchValue} found at index {binarySearchIndex}");
     }
 
-    static void FindAnagramPalindromePrimes(int start, int end)
+    static void BubbleSort<T>(T[] array) where T : IComparable<T>
     {
-        for (int number = start; number <= end; number++)
+        int length = array.Length;
+        for (int i = 0; i < length - 1; i++)
         {
-            if (IsPrime(number) && IsAnagram(number) && IsPalindrome(number))
+            for (int j = 0; j < length - i - 1; j++)
             {
-                Console.WriteLine(number);
+                if (array[j].CompareTo(array[j + 1]) > 0)
+                {
+                    T temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
             }
         }
     }
 
-    static bool IsPrime(int number)
+    static int LinearSearch<T>(T[] array, T value) where T : IComparable<T>
     {
-        if (number < 2)
+        for (int i = 0; i < array.Length; i++)
         {
-            return false;
-        }
-
-        for (int i = 2; i <= Math.Sqrt(number); i++)
-        {
-            if (number % i == 0)
+            if (array[i].Equals(value))
             {
-                return false;
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    static int BinarySearch<T>(T[] array, T value) where T : IComparable<T>
+    {
+        int low = 0;
+        int high = array.Length - 1;
+
+        while (low <= high)
+        {
+            int mid = (low + high) / 2;
+            int comparison = array[mid].CompareTo(value);
+
+            if (comparison == 0)
+            {
+                return mid;
+            }
+            else if (comparison < 0)
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
             }
         }
 
-        return true;
+        return -1;
     }
 
-    static bool IsAnagram(int number)
+    static void PrintArray<T>(T[] array)
     {
-        string originalNumber = number.ToString();
-        char[] charArray = originalNumber.ToCharArray();
-        Array.Sort(charArray);
-        string sortedNumber = new string(charArray);
-
-        for (int i = number + 1; i <= 1000; i++)
+        foreach (T item in array)
         {
-            string currentNumber = i.ToString();
-            charArray = currentNumber.ToCharArray();
-            Array.Sort(charArray);
-            string sortedCurrentNumber = new string(charArray);
-
-            if (sortedNumber.Equals(sortedCurrentNumber))
-            {
-                return true;
-            }
+            Console.Write($"{item} ");
         }
-
-        return false;
-    }
-
-    static bool IsPalindrome(int number)
-    {
-        string originalNumber = number.ToString();
-        char[] charArray = originalNumber.ToCharArray();
-        Array.Reverse(charArray);
-        string reversedNumber = new string(charArray);
-
-        return originalNumber.Equals(reversedNumber);
+        Console.WriteLine();
     }
 }
-
-
