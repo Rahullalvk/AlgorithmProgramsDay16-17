@@ -1,88 +1,43 @@
-﻿using System;
-
-class Program
+﻿
+class NumberGuesser
 {
-    static void Main()
+    static int GuessNumber(int low, int high)
     {
-        int[] numbers = { 5, 2, 9, 1, 3 };
+        if (low == high)
+            return low;
 
-        Console.WriteLine("Original array:");
-        PrintArray(numbers);
+        int mid = (low + high) / 2;
 
-        Console.WriteLine("\nSorted array:");
-        BubbleSort(numbers);
-        PrintArray(numbers);
+        Console.WriteLine("Is your number between {0} and {1}? (y/n)", low, mid);
+        string response = Console.ReadLine().ToLower();
 
-        int searchValue = 3;
-        int linearSearchIndex = LinearSearch(numbers, searchValue);
-        Console.WriteLine($"\nLinear search: {searchValue} found at index {linearSearchIndex}");
-
-        int binarySearchIndex = BinarySearch(numbers, searchValue);
-        Console.WriteLine($"Binary search: {searchValue} found at index {binarySearchIndex}");
-    }
-
-    static void BubbleSort<T>(T[] array) where T : IComparable<T>
-    {
-        int length = array.Length;
-        for (int i = 0; i < length - 1; i++)
+        if (response == "y")
+            return GuessNumber(low, mid);
+        else if (response == "n")
+            return GuessNumber(mid + 1, high);
+        else
         {
-            for (int j = 0; j < length - i - 1; j++)
-            {
-                if (array[j].CompareTo(array[j + 1]) > 0)
-                {
-                    T temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
+            Console.WriteLine("Invalid input. Please enter 'y' or 'n'.");
+            return GuessNumber(low, high);
         }
     }
 
-    static int LinearSearch<T>(T[] array, T value) where T : IComparable<T>
+    static void Main(string[] args)
     {
-        for (int i = 0; i < array.Length; i++)
+        if (args.Length == 0)
         {
-            if (array[i].Equals(value))
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    static int BinarySearch<T>(T[] array, T value) where T : IComparable<T>
-    {
-        int low = 0;
-        int high = array.Length - 1;
-
-        while (low <= high)
-        {
-            int mid = (low + high) / 2;
-            int comparison = array[mid].CompareTo(value);
-
-            if (comparison == 0)
-            {
-                return mid;
-            }
-            else if (comparison < 0)
-            {
-                low = mid + 1;
-            }
-            else
-            {
-                high = mid - 1;
-            }
+            Console.WriteLine("Please provide the value of N as a command-line argument.");
+            return;
         }
 
-        return -1;
-    }
-
-    static void PrintArray<T>(T[] array)
-    {
-        foreach (T item in array)
+        int n;
+        if (!int.TryParse(args[0], out n) || n <= 0 || (n & (n - 1)) != 0)
         {
-            Console.Write($"{item} ");
+            Console.WriteLine("Invalid value of N. N should be a power of 2.");
+            return;
         }
-        Console.WriteLine();
+
+        int number = GuessNumber(0, n - 1);
+        Console.WriteLine("The number you were thinking of is: " + number);
     }
 }
