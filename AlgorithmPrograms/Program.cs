@@ -1,103 +1,53 @@
-﻿public class Permutation
+﻿
+
+
+class Program
 {
-    public static string[] GetPermutationsIterative(string str)
+    static void Main()
     {
-        List<string> permutations = new List<string>();
-        permutations.Add(str);
+        string[] wordList = ReadWordList();
 
-        for (int i = 0; i < str.Length; i++)
-        {
-            for (int j = i + 1; j < str.Length; j++)
-            {
-                permutations.AddRange(SwapChars(str, i, j));
-            }
-        }
+        Console.Write("Enter a word to search: ");
+        string searchWord = Console.ReadLine();
 
-        return permutations.ToArray();
-    }
+        Array.Sort(wordList);
 
-    private static List<string> SwapChars(string str, int i, int j)
-    {
-        char[] charArray = str.ToCharArray();
-        char temp = charArray[i];
-        charArray[i] = charArray[j];
-        charArray[j] = temp;
-
-        return new List<string> { new string(charArray) };
-    }
-
-    public static string[] GetPermutationsRecursive(string str)
-    {
-        List<string> permutations = new List<string>();
-        GetPermutationsRecursiveHelper(str.ToCharArray(), 0, permutations);
-        return permutations.ToArray();
-    }
-
-    private static void GetPermutationsRecursiveHelper(char[] charArray, int index, List<string> permutations)
-    {
-        if (index == charArray.Length - 1)
-        {
-            permutations.Add(new string(charArray));
-        }
+        if (BinarySearch(wordList, searchWord))
+            Console.WriteLine("The word is found in the list.");
         else
-        {
-            for (int i = index; i < charArray.Length; i++)
-            {
-                Swap(ref charArray[index], ref charArray[i]);
-                GetPermutationsRecursiveHelper(charArray, index + 1, permutations);
-                Swap(ref charArray[index], ref charArray[i]);
-            }
-        }
+            Console.WriteLine("The word is not found in the list.");
+
+        Console.ReadLine();
     }
 
-    private static void Swap(ref char a, ref char b)
+    static string[] ReadWordList()
     {
-        char temp = a;
-        a = b;
-        b = temp;
+        Console.Write("Enter the list of words separated by commas: ");
+        string wordListInput = Console.ReadLine();
+
+        return wordListInput.Split(',');
+    }
+
+    static bool BinarySearch(string[] wordList, string searchWord)
+    {
+        int left = 0;
+        int right = wordList.Length - 1;
+
+        while (left <= right)
+        {
+            int middle = (left + right) / 2;
+
+            int comparisonResult = string.Compare(searchWord, wordList[middle]);
+
+            if (comparisonResult == 0)
+                return true;
+            else if (comparisonResult < 0)
+                right = middle - 1;
+            else
+                left = middle + 1;
+        }
+
+        return false;
     }
 }
 
-public class Program
-{
-    public static void Main()
-    {
-        string str = "abc";
-
-        string[] iterativePermutations = Permutation.GetPermutationsIterative(str);
-        string[] recursivePermutations = Permutation.GetPermutationsRecursive(str);
-
-        Console.WriteLine("Iterative Permutations:");
-        foreach (string permutation in iterativePermutations)
-        {
-            Console.WriteLine(permutation);
-        }
-
-        Console.WriteLine("Recursive Permutations:");
-        foreach (string permutation in recursivePermutations)
-        {
-            Console.WriteLine(permutation);
-        }
-
-        bool areEqual = ArraysEqual(iterativePermutations, recursivePermutations);
-        Console.WriteLine("Are the arrays equal? " + areEqual);
-    }
-
-    private static bool ArraysEqual(string[] array1, string[] array2)
-    {
-        if (array1.Length != array2.Length)
-        {
-            return false;
-        }
-
-        for (int i = 0; i < array1.Length; i++)
-        {
-            if (array1[i] != array2[i])
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-}
