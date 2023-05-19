@@ -1,0 +1,15 @@
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\bin\Debug\net7.0\AlgorithmPrograms.exe
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\bin\Debug\net7.0\AlgorithmPrograms.deps.json
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\bin\Debug\net7.0\AlgorithmPrograms.runtimeconfig.json
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\bin\Debug\net7.0\AlgorithmPrograms.dll
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\bin\Debug\net7.0\AlgorithmPrograms.pdb
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.AssemblyInfo.cs
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.dll
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\refint\AlgorithmPrograms.dll
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.pdb
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\AlgorithmPrograms.genruntimeconfig.cache
+C:\Users\Admin\Documents\Day16-17\AlgorithmPrograms\AlgorithmPrograms\obj\Debug\net7.0\ref\AlgorithmPrograms.dll
